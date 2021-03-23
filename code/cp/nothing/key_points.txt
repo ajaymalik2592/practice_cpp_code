@@ -1,0 +1,4 @@
+Admin has a access to all the post that have been posted on the site.
+User can sent friend request to any other user and the requested user has the power to accept it or deny to it.
+User can check his/her post as well as the post that have been uploaded by the it's friends.
+Time comlexity has been optimized from n^2 to nlog(n) for fetching the data from database to the respetive user dashboard.

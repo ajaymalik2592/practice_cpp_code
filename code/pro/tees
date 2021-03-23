@@ -1,0 +1,68 @@
+#include<bits/stdc++.h>
+using namespace std;
+struct node
+{
+    int data;
+    node *left, *right;
+};
+int cost = 0;
+struct node* create(int element)
+{
+    struct node* root = (node *)malloc(sizeof( node));
+    root -> data = element;
+    root -> left = NULL;
+    root -> right = NULL;
+    return root;
+}
+int finding(struct node * tree)
+{
+    if(tree == NULL)
+    return 0;
+    else
+    {
+        int l1 = finding(tree -> left);
+        int r2 = finding (tree -> right);
+        cost = max(cost , l1 + r2 + 1 );
+        cout << "l1 "<< l1 << " r2 " <<r2 ;
+        if(l1 > r2)return (l1 +1);
+        else return (r2  + 1);
+    }
+}
+int main()
+{
+    int t,head;
+    cin >> t >> head;
+    struct node *tree, *temp , *temp1;
+    
+    tree = create(head);
+    temp = tree;
+    temp1 = tree;
+    // tree.data = head;
+    
+    for(int x =1; x < t;x++)
+    {
+        string s;
+        cin >> s;
+        temp = tree;
+        for(int x =0; x < s.length() ; x++)
+        {
+            if(s[x] == 'L')
+            {
+                temp = temp -> left;
+            }
+            else
+            {
+                temp = temp-> right;
+            }
+        }
+        int f;
+        cin >> f;
+        temp = create(f);
+        tree = temp1;
+        
+    }
+    int dia = finding(tree);
+    cout << cost -1 ;
+    
+    return 0;
+}

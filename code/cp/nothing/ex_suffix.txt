@@ -1,0 +1,11 @@
+pre =  [ ,  , ]
+suff = [ ,  , ]
+sum = (2 + 5 + 10 + 5 + 8 + 10)/ 4 = 10 // total sum divided by (n+1)
+pre[3] = 10  // i based indexing 
+suff[3] = 10  
+pre[1] + suff[2] =  pre[2] + suff[1] = 10
+choose {5, 5} or {2, 8 }  two option {2, 8} itself will give two other combination
+1.  pre = [2 , 5, 10] , suff =[8, 5, 10] , arr[2,  3, 5]
+2.  pre = [8 , 5, 10] , suff =[2, 5, 10] , arr[8, -3, 5]
+3.  pre = [5 , 2, 10] , suff =[5, 8, 10] , arr[5, -3, 8]
+4.  pre = [5 , 8, 10] , suff =[5, 2, 10] , arr[5,  3, 2]
