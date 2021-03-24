@@ -30,6 +30,7 @@ def unique_vals(rows, col):
     """Find the unique values for a column in a dataset."""
     return set([row[col] for row in rows])
 
+
 #######
 # Demo:
 # unique_vals(training_data, 0)
@@ -48,6 +49,7 @@ def class_counts(rows):
         counts[label] += 1
     return counts
 
+
 #######
 # Demo:
 # class_counts(training_data)
@@ -57,6 +59,7 @@ def class_counts(rows):
 def is_numeric(value):
     """Test if a value is numeric."""
     return isinstance(value, int) or isinstance(value, float)
+
 
 #######
 # Demo:
@@ -92,8 +95,8 @@ class Question:
         condition = "=="
         if is_numeric(self.value):
             condition = ">="
-        return "Is %s %s %s?" % (
-            header[self.column], condition, str(self.value))
+        return "Is %s %s %s?" % (header[self.column], condition, str(self.value))
+
 
 #######
 # Demo:
@@ -132,6 +135,7 @@ def partition(rows, question):
 # false_rows
 #######
 
+
 def gini(rows):
     """Calculate the Gini Impurity for a list of rows.
     There are a few different ways to do this, I thought this one was
@@ -142,7 +146,7 @@ def gini(rows):
     impurity = 1
     for lbl in counts:
         prob_of_lbl = counts[lbl] / float(len(rows))
-        impurity -= prob_of_lbl**2
+        impurity -= prob_of_lbl ** 2
     return impurity
 
 
@@ -173,6 +177,7 @@ def gini(rows):
 # gini(lots_of_mixing)
 #######
 
+
 def info_gain(left, right, current_uncertainty):
     """Information Gain.
     The uncertainty of the starting node, minus the weighted impurity of
@@ -180,6 +185,7 @@ def info_gain(left, right, current_uncertainty):
     """
     p = float(len(left)) / (len(left) + len(right))
     return current_uncertainty - p * gini(left) - (1 - p) * gini(right)
+
 
 #######
 # Demo:
@@ -251,6 +257,7 @@ def find_best_split(rows):
 
     return best_gain, best_question
 
+
 #######
 # Demo:
 # Find the best question to ask first for our toy dataset.
@@ -258,6 +265,7 @@ def find_best_split(rows):
 # FYI: is color == Red is just as good. See the note in the code above
 # where I used '>='.
 #######
+
 
 class Leaf:
     """A Leaf node classifies data.
@@ -274,10 +282,7 @@ class Decision_Node:
     This holds a reference to the question, and to the two child nodes.
     """
 
-    def __init__(self,
-                 question,
-                 true_branch,
-                 false_branch):
+    def __init__(self, question, true_branch, false_branch):
         self.question = question
         self.true_branch = true_branch
         self.false_branch = false_branch
@@ -323,18 +328,18 @@ def print_tree(node, spacing=""):
 
     # Base case: we've reached a leaf
     if isinstance(node, Leaf):
-        print (spacing + "Predict", node.predictions)
+        print(spacing + "Predict", node.predictions)
         return
 
     # Print the question at this node
-    print (spacing + str(node.question))
+    print(spacing + str(node.question))
 
     # Call this function recursively on the true branch
-    print (spacing + '--> True:')
+    print(spacing + '--> True:')
     print_tree(node.true_branch, spacing + "  ")
 
     # Call this function recursively on the false branch
-    print (spacing + '--> False:')
+    print(spacing + '--> False:')
     print_tree(node.false_branch, spacing + "  ")
 
 
@@ -361,6 +366,7 @@ def classify(row, node):
 # my_tree = build_tree(training_data)
 # classify(training_data[0], my_tree)
 #######
+
 
 def print_leaf(counts):
     """A nicer way to print the predictions at a leaf."""
@@ -399,5 +405,6 @@ if __name__ == '__main__':
     ]
 
     for row in testing_data:
-        print ("Actual: %s. Predicted: %s" %
-               (row[-1], print_leaf(classify(row, my_tree))))
+        print(
+            "Actual: %s. Predicted: %s" % (row[-1], print_leaf(classify(row, my_tree)))
+        )

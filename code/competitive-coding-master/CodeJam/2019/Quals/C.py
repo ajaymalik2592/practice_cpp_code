@@ -1,6 +1,7 @@
 from string import ascii_uppercase as alpha
 from math import gcd
 
+
 def case():
     n, m = map(int, input().split())
     a = [int(x) for x in input().split()]
@@ -23,6 +24,7 @@ def case():
     for x in ans:
         s += d[x]
     return s
-    
+
+
 for i in range(int(input())):
     print("Case #{}: {}".format(i + 1, case()))

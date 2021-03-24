@@ -1,15 +1,21 @@
 import sys
+
 sys.setrecursionlimit(2001)
+
+
 def debug(*args, **kwargs):
     print(*args, file=sys.stderr, **kwargs)
+
 
 class Node:
     def __init__(self, left, right):
         self.left = left
         self.right = right
 
+
 def solve():
     nodes = {}
+
     def preorder(val, arr):
         if val == 0:
             return
@@ -62,6 +68,7 @@ def solve():
         for e in A[i]:
             ans[e - 1] = ii
     print(*ans)
+
 
 for T in range(int(input())):
     print(f"Case #{T+1}:", end=" ")

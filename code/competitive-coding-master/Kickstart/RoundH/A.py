@@ -11,15 +11,17 @@ def test_case():
             if i == j:
                 continue
             if len(a[i]) < len(a[j]):
-                if a[i] == a[j][:len(a[i])]:
+                if a[i] == a[j][: len(a[i])]:
                     seen.add(j)
     ans = 2 ** n
     for i in range(p):
         if i not in seen:
-            ans -= (2 ** (n - len(a[i])))
+            ans -= 2 ** (n - len(a[i]))
     print(ans)
 
+
 import sys
+
 for t in range(1, int(input()) + 1):
     print(f"Case #{t}: ", end="")
     test_case()

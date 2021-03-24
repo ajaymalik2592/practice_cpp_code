@@ -1,4 +1,5 @@
 from collections import defaultdict as dd
+
 d = dd(int)
 
 n = int(input())

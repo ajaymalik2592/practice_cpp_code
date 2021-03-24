@@ -1,4 +1,5 @@
 from collections import Counter as cc
+
 n, k = map(int, input().split())
 s = input()
 c = cc(s)

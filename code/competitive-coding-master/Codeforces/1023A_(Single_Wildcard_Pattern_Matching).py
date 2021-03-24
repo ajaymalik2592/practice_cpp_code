@@ -17,7 +17,7 @@ def solve():
     b = b[::-1]
     k = t[::-1]
     # print(b, k)
-    if a == t[:len(a)] and b == k[:len(b)]:
+    if a == t[: len(a)] and b == k[: len(b)]:
         print("YES")
     else:
         print("NO")

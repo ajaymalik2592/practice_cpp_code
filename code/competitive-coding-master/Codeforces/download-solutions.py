@@ -17,14 +17,23 @@ else:
 
 DOWNLOAD_DIR = '.'
 SUBMISSION_URL = 'http://codeforces.com/contest/{ContestId}/submission/{SubmissionId}'
-USER_INFO_URL = 'http://codeforces.com/api/user.status?handle={handle}&from=1&count={count}'
+USER_INFO_URL = (
+    'http://codeforces.com/api/user.status?handle={handle}&from=1&count={count}'
+)
 
-EXT = {'C++': 'cpp', 'Python 3': 'py',
-       'PyPy 3': 'py', 'PyPy': 'py',
-       'Python': 'py', 'C': 'c', 'Java': 'java',}
+EXT = {
+    'C++': 'cpp',
+    'Python 3': 'py',
+    'PyPy 3': 'py',
+    'PyPy': 'py',
+    'Python': 'py',
+    'C': 'c',
+    'Java': 'java',
+}
 
 replacer = {'&quot;': '\"', '&gt;': '>', '&lt;': '<', '&amp;': '&', "&apos;": "'"}
 keys = replacer.keys()
+
 
 def get_ext(comp_lang):
     for key in EXT.keys():
@@ -32,10 +41,12 @@ def get_ext(comp_lang):
             return EXT[key]
     return "txt"
 
+
 def parse(source_code):
     for key in keys:
         source_code = source_code.replace(key, replacer[key])
     return source_code
+
 
 # base_dir = DOWNLOAD_DIR + '/' + handle
 base_dir = DOWNLOAD_DIR
@@ -45,20 +56,22 @@ if not os.path.exists(base_dir):
     os.makedirs(base_dir)
 os.chdir(base_dir)
 
-user_info_full_url = USER_INFO_URL.format(handle=handle, count=MAX_SUBS+1)
+user_info_full_url = USER_INFO_URL.format(handle=handle, count=MAX_SUBS + 1)
 print('Fetching user status:', user_info_full_url)
 dic = json.loads(urllib.request.urlopen(user_info_full_url).read())
 if dic['status'] != u'OK':
     print("Couldn't fetch user status")
     exit(1)
 
-submissions = [submission for submission in dic['result'] if submission['verdict'] == u'OK']
+submissions = [
+    submission for submission in dic['result'] if submission['verdict'] == u'OK'
+]
 print('Fetching %d submissions' % len(submissions))
 
 start_time = time.time()
 cnt = 0
 for submission in submissions:
-    con_id, sub_id = submission['contestId'], submission['id'],
+    con_id, sub_id = submission['contestId'], submission['id']
     prob_name, prob_id = submission['problem']['name'], submission['problem']['index']
     comp_lang = submission['programmingLanguage']
 

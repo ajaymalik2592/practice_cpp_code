@@ -11,5 +11,6 @@ def test_case(tno):
             b += '0'
     print("Case #{}: {} {}".format(tno, a, b))
 
+
 for i in range(int(input())):
     test_case(i + 1)
